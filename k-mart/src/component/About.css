@@ -1,0 +1,15 @@
+.bg_about {
+  height: 70vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.img1{
+  height: 300px;
+  width: 300px;
+  align-items: center;
+}
+.main{
+  background: rgb(246, 242, 8);
+}
