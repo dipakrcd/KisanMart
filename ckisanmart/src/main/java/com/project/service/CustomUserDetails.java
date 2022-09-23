@@ -36,6 +36,7 @@ public class CustomUserDetails implements UserDetails {
 		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+this.user.getRole().toUpperCase()));
 //		System.out.println("inside details impl "+grantedAuthorities.get(0).getAuthority());
 		return grantedAuthorities;
+		
 	}
 	@Override
 	public String getPassword() {

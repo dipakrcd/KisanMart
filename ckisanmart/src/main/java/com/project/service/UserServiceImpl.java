@@ -17,7 +17,8 @@ public class UserServiceImpl implements IUserServices {
 	private IUserRepository iUserRepo;
 	@Autowired
 	private PasswordEncoder encoder;
-	
+	@Autowired
+	private  EmailSenderService mailservice;
 	@Override
 	public Optional<User> getUser(String email) {
 		
@@ -29,5 +30,28 @@ public class UserServiceImpl implements IUserServices {
 	return iUserRepo.save(user);
 		
 	}
-
+	@Override
+	public int validateEmailAndGenearateOtp(String email) {
+		int randomNumber;
+		if(iUserRepo.findByEmail(email).isPresent()) {
+			randomNumber=(int)(Math.random()*9999);
+			if(randomNumber<=1000) {
+				randomNumber=randomNumber+1000;
+			}
+			mailservice.sendMail(email,"otp password Reset",String.valueOf(randomNumber));
+			return randomNumber; 
+		
+	}
+		else {
+			return -1;
+		}
+}
+	@Override
+	public boolean changePassword(String email, String password) {
+		User u=iUserRepo.findByEmail(email).orElseThrow();
+		u.setPassword(encoder.encode(password));
+		if(iUserRepo.save(u)!=null)
+			return true;
+		return false;
+	}
 }

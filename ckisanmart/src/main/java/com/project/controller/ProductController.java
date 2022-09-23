@@ -29,7 +29,7 @@ public class ProductController {
 	private IProductServices productServices;
 	
 	//1)add product
-	@PostMapping("/addproduct")
+	@PostMapping("/vendor/addproduct")
 	public ResponseEntity<?> addProduct(@RequestBody Product product, HttpServletRequest request){
 		
 		return  ResponseEntity.ok(productServices.addProducts(product,request.getUserPrincipal().getName()));
@@ -41,13 +41,13 @@ public class ProductController {
 		return ResponseEntity.ok(productServices.getProduct(id));
 	}
 //	3)updateproduct
-	@PutMapping("/editproduct")
+	@PutMapping("/vendor/editproduct")
 	ResponseEntity<?>editProduct(@RequestBody Product product, HttpServletRequest request){
 		productServices.editProduct(product,request.getUserPrincipal().getName());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 //	4)deleteproduct
-	@DeleteMapping("/productremove/{id}")
+	@DeleteMapping("/vendor/productremove/{id}")
 	void removeProduct(@PathVariable int id, HttpServletRequest request){
 		productServices.removeProduct(id) ;
 	}
@@ -68,7 +68,7 @@ public class ProductController {
 		return ResponseEntity.ok(productServices.getProductsByName(name));
 	}
 //	8)add to cart
-	@PostMapping("/addtocart")
+	@PostMapping("/customer/addtocart")
 	ResponseEntity<?>addToCart(@RequestBody CartDTO product, HttpServletRequest request){
 		System.out.println("in add");
 		productServices.addToCart(product,request.getUserPrincipal().getName());

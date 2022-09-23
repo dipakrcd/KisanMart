@@ -43,14 +43,19 @@ public class WebSecurityConfig {
 //		}).
 //		and().
 		authorizeRequests()
-		.antMatchers("/**").permitAll()
-		.antMatchers("/getInfo").permitAll()
-		.antMatchers("/register").permitAll()
-		.antMatchers("/addproduct").permitAll()
-		.antMatchers("/Vender/**").hasAnyRole("VENDOR")
-		.antMatchers("/admin/**").hasAnyRole("ADMIN") // enabling global
-																									// access to all
-																										// urls with
+//		
+//		.antMatchers("/getInfo").permitAll()
+//		.antMatchers("/register").permitAll()
+//		
+//		.antMatchers("/addproduct").hasAnyRole("VENDOR")
+		.antMatchers("/customer/**").hasRole("CUSTOMER")
+		.antMatchers("/vendor/**").hasRole("VENDOR")
+		.antMatchers("/admin/**").hasRole("ADMIN") // enabling global
+		.antMatchers("/login","/register").permitAll()
+		.antMatchers("/**").permitAll()// access to all
+//		.antMatchers("/searchproducts/**","/allvendorproducts/**","/getproduct/**").permitAll()	
+		
+		// urls with
 																										// /auth
 				// only required for JS clnts (react / angular)
 		.antMatchers(HttpMethod.OPTIONS).permitAll().

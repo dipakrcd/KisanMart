@@ -8,7 +8,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +64,22 @@ public class MainController {
 			e.printStackTrace();
 			throw new RuntimeException("User authentication Failed", e);
 		}
+	}
+	@GetMapping("/generateotp/{email}")
+	public ResponseEntity<?> generateOtp(@PathVariable String email){
+		int randomNumber=userServices.validateEmailAndGenearateOtp(email);
+	System.out.println(randomNumber);
+	if(randomNumber!=-1)
+		return ResponseEntity.ok(randomNumber);
+		else
+			return new ResponseEntity<>(HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+	}
+	@PutMapping("/changepassword")
+	public ResponseEntity<?> changePassword(@RequestBody LoginDTO credentials ){
+		if(userServices.changePassword(credentials.getEmail(),credentials.getPassword()))
+			return ResponseEntity.ok("password chaange successfully");
+			else
+				return new ResponseEntity<>(HttpStatus.NON_AUTHORITATIVE_INFORMATION);
 	}
 
 }

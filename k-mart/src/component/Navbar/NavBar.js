@@ -1,43 +1,41 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import logo from "../../images/img5.png";
-import { Link } from 'react-router-dom';
+import React from 'react'
+
+import { Link } from 'react-router-dom'; 
 function NavBar() {
-  const history = useHistory();
   return (
-    <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-      <div className="container">
-        <div className="navbar-brand" onClick={() => { history.push("/") }}>
-          <img src={logo} alt="" width="130" height="65" className="d-inline-block align-text-top" />
-        </div>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
-          <ul className="nav">
-            <li className="nav-item">
-              <div className="dropdown">
-                <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Category
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><button className="dropdown-item" >Vegetables</button></li>
-                  <li><button className="dropdown-item" >Fruits</button></li>
-                  <li><button className="dropdown-item" >Dairy Product</button></li>
-                  <li><button className="dropdown-item" >Grocery</button></li>     
-                </ul>
-              </div>
-            </li>
-            <li className="nav-item">
-                        <Link className="btn" to={'/aboutus'}>About us</Link>
-                    </li>
-                    <li className="nav-item justify-self-end">
-                        <Link className="btn" to={'/contactus'}>Contact us</Link>
-                    </li>
-          </ul>
-        </div>
+    <div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 shadow-sm">
+  <div class="container">
+    <Link to="/" class="navbar-brand fw-bold fs-4">Kisan-MART</Link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <Link to="/" class="nav-link active" aria-current="page">Home</Link>
+        </li>
+        <li class="nav-item">
+        <Link to="/product" class="nav-link">Products</Link>
+        
+        </li>
+        <li class="nav-item">
+        <Link to="/aboutus" class="nav-link">About Us</Link>
+        </li>
+        <li class="nav-item">
+        <Link to="/contactus" class="nav-link">Contact US</Link>
+        </li>
+      </ul>
+      <div className="buttons">
+        <Link to="/login" className="btn btn-outline-dark"><i className="fa fa-sign-in me-1"></i>Login</Link>
+        <Link to="/register" className="btn btn-outline-dark"><i className="fa fa-sign-in me-1"></i>Sign-Up</Link>
+        <Link to="/cart" className="btn btn-outline-dark"><i className="fa fa-sign-in me-1"></i>Cart</Link>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
+</div>
+
   )
 }
 

@@ -28,20 +28,20 @@ public class CartController {
 		return ResponseEntity.ok(icartservice.getproducts(request.getUserPrincipal().getName()));
 	}
 	
-	@DeleteMapping("/productremovefromcart/{id}")
+	@DeleteMapping("/customer/productremovefromcart/{id}")
 	ResponseEntity<?>removeFromCart(@PathVariable int id){
 		icartservice.removeproductfromcart(id);
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	
 	
-	@PutMapping("/increasequantity/{id}")
+	@PutMapping("/customer/increasequantity/{id}")
 	public ResponseEntity<?> increasequantity(@PathVariable int id){
 		icartservice.incresequantity(id);
 		return new ResponseEntity<>(HttpStatus.OK);	
 		
 	}
-	@PutMapping("/decreasequantity/{id}")
+	@PutMapping("/customer/decreasequantity/{id}")
 	public ResponseEntity<?> decreasequantity(@PathVariable int id){
 		icartservice.decreasequantity(id);
 		return new ResponseEntity<>(HttpStatus.OK);	

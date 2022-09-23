@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -39,7 +40,7 @@ public class User extends BaseEntity {
 	@Size(min = 10,max = 10)
 	private String contact;
 	
-	@Column(length = 25,unique = true)
+	@Column(length = 30,unique = true)
 	@Email
 	@NotEmpty(message = "email cannot be null")
 	private String email;
@@ -52,7 +53,7 @@ public class User extends BaseEntity {
 	@NotEmpty
 	private String role;
 
-
+	
 
 	
 //	@OneToone()
@@ -80,6 +81,15 @@ public User(@NotEmpty(message = "name cannot be empty") String firstName,
 	this.password = password;
 	this.role = role;
 }
+
+
+
+
+
+
+
+
+
 
 	
 	
