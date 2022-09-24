@@ -35,13 +35,14 @@ public class CartController {
 	}
 	
 	
-	@PutMapping("/customer/increasequantity/{id}")
+	@PutMapping("/increasequantity/{id}")
 	public ResponseEntity<?> increasequantity(@PathVariable int id){
+		
 		icartservice.incresequantity(id);
 		return new ResponseEntity<>(HttpStatus.OK);	
 		
 	}
-	@PutMapping("/customer/decreasequantity/{id}")
+	@PutMapping("/decreasequantity/{id}")
 	public ResponseEntity<?> decreasequantity(@PathVariable int id){
 		icartservice.decreasequantity(id);
 		return new ResponseEntity<>(HttpStatus.OK);	

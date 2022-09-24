@@ -33,6 +33,7 @@ public class CartServiceImpl implements ICartService {
 	@Override
 	public void incresequantity(int id) {
 		Cart c=cartrepo.findById(id).orElseThrow();
+		
 		c.setQuantity(c.getQuantity()+1);;
 		cartrepo.save(c);
 		
@@ -40,6 +41,7 @@ public class CartServiceImpl implements ICartService {
 	@Override
 	public void decreasequantity(int id) {
 		Cart c=cartrepo.findById(id).orElseThrow();
+	    if(c.getQuantity()!=0)
 		c.setQuantity(c.getQuantity()-1);;
 		cartrepo.save(c);
 	}

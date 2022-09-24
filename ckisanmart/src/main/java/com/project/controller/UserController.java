@@ -19,8 +19,8 @@ public class UserController {
     private IUserServices userServices;
 	
 	
-	@GetMapping("/getInfo")
-	public ResponseEntity<?> getUSer(HttpServletRequest request){
+	@GetMapping("/getinfo")
+	 ResponseEntity<?> getUSer(HttpServletRequest request){
 		return  ResponseEntity.ok(userServices.getUser(request.getUserPrincipal().getName()));
 	}
 }
