@@ -242,6 +242,7 @@ const HomePage = () => {
                 </div>
 
             </div>
+            <br/>
             <Footer/>
             </div>
         </>
