@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { url } from "./Common/constants";
 import Footer from "./Footer/Footer";
+import swal from 'sweetalert'
 const Grocery = () => {
 
     const [grocery, setGrocery] = useState([]);
@@ -21,7 +22,7 @@ const Grocery = () => {
             axios.post(url + "/customer/addtocart", itemcart, { headers: { "authorization": `Bearer ${token}` } })
                 .then(response => {
                     console.log('Printing product data', response.data);
-                    alert("product Added Successfully")
+                    swal("Good job!", "product Added Successfully","success");
                     history.push("/cart");
                 })
                 .catch(error => {

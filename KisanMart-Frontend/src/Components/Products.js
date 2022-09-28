@@ -7,7 +7,7 @@ import { url } from "./Common/constants";
 import { useParams } from "react-router-dom";
 import "./Product.css"
 import Footer from "./Footer/Footer";
-
+import swal from 'sweetalert'
 const Products = () => {
     const [products, setproducts] = useState([]);
     const [quantity, setquantity] = useState(1);
@@ -27,7 +27,7 @@ const Products = () => {
                     
                     console.log('Printing product data', response.data);
                     history.push("/cart");
-                    alert("product Added Successfully")
+                    swal("Good job!", "product Added Successfully","success");
                     
                 })
                 .catch(error => {

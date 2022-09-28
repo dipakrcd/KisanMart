@@ -4,7 +4,7 @@ import { useState } from "react";
 import { url } from "./Common/constants";
 import { useHistory } from "react-router-dom";
 import "./Register.css";
-
+import swal from 'sweetalert'
 const Register = () => {
   const [firstName, setfirstname] = useState("");
   const [lastName, setlastname] = useState("");
@@ -33,7 +33,8 @@ const Register = () => {
         .post(url + "/register", user)
         .then((response) => {
           console.log("Printing user data", response.status);
-          alert("Registration Successfull!");
+          swal("Good job!", "Registration Successfull!","success");
+          // alert("Registration Successfull!");
 
           history.push("/login");
         })
@@ -124,7 +125,6 @@ const Register = () => {
                 type="password"
                 className="form-control"
                 id="password"
-                value={password}
                 minlength={8}
                 onChange={(e) => {
                   setpassword(e.target.value);

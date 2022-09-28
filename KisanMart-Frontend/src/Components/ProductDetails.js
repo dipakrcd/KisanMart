@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { url } from "./Common/constants";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import swal from 'sweetalert'
 const ProductDetails = () => {
     const { id } = useParams();
     const [item, setitem] = useState("")
@@ -23,14 +24,15 @@ const ProductDetails = () => {
                 .then(response => {
                     console.log('Printing product data', response.data);
                     history.push("/cart");
-                    alert("product Added Successfully")
+                    swal("Good job!", "product Added Successfully","success");
                 })
                 .catch(error => {
                     console.log('Something went wrong', error);
                 });
         }
         else {
-            alert("please Login First")
+            // alert("please Login First")
+            swal("Try again", "please Login First","error");
         }
     }
     useEffect(() => {

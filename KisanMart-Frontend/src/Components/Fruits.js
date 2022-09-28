@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { url } from "./Common/constants";
 import Footer from "./Footer/Footer";
+import swal from 'sweetalert'
 const Fruits = () => {
 
     const [fruits, setFruits] = useState([]);
@@ -22,7 +23,7 @@ const Fruits = () => {
                 .then(response => {
                     console.log('Printing product data', response.data);
                     history.push("/cart");
-                    alert("product Added Successfully")
+                    swal("Good job!", "product Added Successfully","success");
                 })
                 .catch(error => {
                     console.log('Something went wrong', error);
