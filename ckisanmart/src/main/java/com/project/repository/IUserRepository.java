@@ -8,4 +8,5 @@ import com.project.pojo.User;
 
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByEmail(String username);
+	Optional<User> findByContact(String contact);
 }

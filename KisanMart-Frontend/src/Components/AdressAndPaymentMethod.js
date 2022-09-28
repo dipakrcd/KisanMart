@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import useRazorpay from "react-razorpay";
 import { url } from "./Common/constants";
-
+import swal from 'sweetalert'
 const AdressAndPaymentMethod = () => {
   const token = JSON.parse(localStorage.getItem("jwttoken"));
   const [fullName, setfullName] = useState("");
@@ -43,8 +43,10 @@ const AdressAndPaymentMethod = () => {
         orderId,
         status,
       };
+      
+  
       axios
-        .post(url + "/payment", order, {
+        .post(url + "/customer/payment", order, {
           headers: { authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -60,20 +62,33 @@ const AdressAndPaymentMethod = () => {
               name: fullName,
               description: "Order Payment",
               order_id: response.data.id,
+             
               handler: function (response) {
-                console.log(response.razorpay_payment_id);
-                console.log(response.razorpay_order_id);
-                console.log(response.razorpay_signature);
+                 setTimeout(() => {
                 setpaymentId(response.razorpay_payment_id);
                 setorderId(response.razorpay_order_id);
                 setstatus("paid");
+                  }, 5000);
+                console.log(response.razorpay_payment_id);
+                console.log(response.razorpay_order_id);
+                console.log(response.razorpay_signature);
                 console.log("payment successful");
-                alert("payment successfull your order place");
+                swal("Good job!", "payment successfull your order place","success");
                 console.log(order);
-                axios.post(url + "/storeorder", order, {
-                  headers: { authorization: `Bearer ${token}` },
-                });
+               
+                setTimeout(() => {
+                  setpaymentId(response.razorpay_payment_id);
+                  setorderId(response.razorpay_order_id);
+                  setstatus("paid");
+                  axios.post(url + "/storeorder", order, {
+                    headers: { authorization: `Bearer ${token}` }
+                 });
+                }, 10000);
+                 
+                
+              
               },
+             
               prefill: {
                 name: fullName,
                 email: "",
@@ -88,20 +103,22 @@ const AdressAndPaymentMethod = () => {
             };
             const rzp = new Razorpay(options);
             rzp.on("payment.failed", function (response) {
-              alert(response.error.code);
-              alert(response.error.description);
-              alert(response.error.source);
-              alert(response.error.step);
-              alert(response.error.reason);
+              console.log(response.error.code);
+              console.log(response.error.description);
+              console.log(response.error.source);
+              console.log(response.error.step);
+              console.log(response.error.reason);
               setpaymentId(response.razorpay_payment_id);
               setorderId(response.error.metadata.order_id);
               setstatus("failed");
-              alert(response.error.metadata.payment_id);
-              alert(response.error.metadata.order_id);
+              console.log(response.error.metadata.payment_id);
+              console.log(response.error.metadata.order_id);
               console.log(order);
-              axios.post(url + "/storeorder", order, {
-                headers: { authorization: `Bearer ${token}` },
-              });
+              swal("Failed", "Your Payment Failed ,Try Again","error");
+              
+              //   axios.post(url + "/storeorder", order, {
+              //   headers: { authorization: `Bearer ${token}` }
+              // });
             });
             rzp.open();
           }

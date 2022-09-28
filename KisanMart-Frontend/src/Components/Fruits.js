@@ -21,6 +21,7 @@ const Fruits = () => {
             axios.post(url + "/customer/addtocart", itemcart, { headers: { "authorization": `Bearer ${token}` } })
                 .then(response => {
                     console.log('Printing product data', response.data);
+                    history.push("/cart");
                     alert("product Added Successfully")
                 })
                 .catch(error => {

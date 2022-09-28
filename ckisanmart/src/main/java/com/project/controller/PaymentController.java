@@ -26,8 +26,8 @@ private IUserServices userService;
 @Autowired
 private IorderService orderService;
 
-@PostMapping("/payment")
-public String Payment(@RequestBody Order order,HttpServletRequest request) {
+@PostMapping("/customer/payment")
+public String Payment(@RequestBody Order order,HttpServletRequest request)throws InterruptedException {
 	System.out.println("in payment");
 	try {
 		System.out.println(orderService.checkQuantity(order,request.getUserPrincipal().getName()));
@@ -39,6 +39,7 @@ public String Payment(@RequestBody Order order,HttpServletRequest request) {
 		ob.put("currency", "INR");
 		ob.put("receipt", "txn_12345");
 		com.razorpay.Order create = client.Orders.create(ob);
+		
 		return create.toString();
 			}
 			System.out.println("insuffiecient");
@@ -50,9 +51,10 @@ public String Payment(@RequestBody Order order,HttpServletRequest request) {
 }
 
 @PostMapping("/storeorder")
-public void storePaymentDetails(@RequestBody Order order ,HttpServletRequest request) {
+public void storePaymentDetails(@RequestBody Order order ,HttpServletRequest request) throws InterruptedException   {
 //	order.setUser(userServices.getUser(request.getUserPrincipal().getName()).orElseThrow());
 	System.out.println(" new order "+order);
+
 	orderService.Transaction(order,request.getUserPrincipal().getName());
 }
 

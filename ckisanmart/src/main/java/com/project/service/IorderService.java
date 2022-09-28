@@ -8,8 +8,8 @@ public interface IorderService {
 
 	List<Order> getordersdetails(String name);
 
-	boolean checkQuantity(Order order, String email);
+	boolean checkQuantity(Order order, String email) throws InterruptedException ;
 
-	void Transaction(Order order, String email);
+	void Transaction(Order order, String email) ;
 
 }

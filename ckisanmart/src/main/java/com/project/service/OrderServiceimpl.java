@@ -35,8 +35,9 @@ public class OrderServiceimpl implements IorderService{
 	}
 
 	@Override
-	public boolean checkQuantity(Order order, String email) {
-       boolean check=true;
+	public boolean checkQuantity(Order order, String email) throws InterruptedException   {
+//       Thread.sleep(1000);
+		boolean check=true;
        System.out.println(order);
        List<Cart> cart=cartrepo.findByUser(iuserrepo.findByEmail(email).orElseThrow());
        for(Cart c:cart) {
@@ -48,7 +49,7 @@ public class OrderServiceimpl implements IorderService{
         	   check=false;
            }
        }
-		
+//       Thread.sleep(10000);
 		return check;
 	}
 

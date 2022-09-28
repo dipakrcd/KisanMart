@@ -23,6 +23,7 @@ const Vegetables = () => {
                 .then(response => {
                     console.log('Printing product data', response.data);
                     alert("product Added Successfully")
+                    history.push("/cart");
                 })
                 .catch(error => {
                     console.log('Something went wrong', error);

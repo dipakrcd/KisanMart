@@ -58,7 +58,7 @@ public class ProductController {
 	}
 //	6)get products by category
 	@GetMapping("/getproducts/{category}")
-	ResponseEntity<?>getFruits(@PathVariable String category, HttpServletRequest request){
+	ResponseEntity<?>getProductByCategory(@PathVariable String category, HttpServletRequest request){
 		return ResponseEntity.ok(productServices.getProductsByCategory(category));
 	}
 //	7)get product by name
