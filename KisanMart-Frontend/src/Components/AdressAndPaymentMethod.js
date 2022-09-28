@@ -64,11 +64,9 @@ const AdressAndPaymentMethod = () => {
               order_id: response.data.id,
              
               handler: function (response) {
-                 setTimeout(() => {
                 setpaymentId(response.razorpay_payment_id);
                 setorderId(response.razorpay_order_id);
                 setstatus("paid");
-                  }, 5000);
                 console.log(response.razorpay_payment_id);
                 console.log(response.razorpay_order_id);
                 console.log(response.razorpay_signature);
@@ -76,14 +74,11 @@ const AdressAndPaymentMethod = () => {
                 swal("Good job!", "payment successfull your order place","success");
                 console.log(order);
                
-                setTimeout(() => {
-                  setpaymentId(response.razorpay_payment_id);
-                  setorderId(response.razorpay_order_id);
-                  setstatus("paid");
+               
                   axios.post(url + "/storeorder", order, {
                     headers: { authorization: `Bearer ${token}` }
                  });
-                }, 10000);
+             
                  
                 
               
