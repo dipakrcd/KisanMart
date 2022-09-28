@@ -60,6 +60,7 @@ const Register = () => {
                 className="form-control"
                 id="fname"
                 value={firstName}
+                placeholder="eg.Smith"
                 onChange={(e) => {
                   setfirstname(e.target.value);
                 }}
@@ -73,6 +74,7 @@ const Register = () => {
                 type="text"
                 className="form-control"
                 id="lname"
+                placeholder="eg.jones"
                 value={lastName}
                 onChange={(e) => {
                   setlastname(e.target.value);
@@ -91,6 +93,7 @@ const Register = () => {
                 id="email"
                 aria-describedby="emailHelp"
                 value={email}
+                placeholder="eg.smithjones@gmail.com"
                 onChange={(e) => {
                   setemail(e.target.value);
                 }}
@@ -104,6 +107,7 @@ const Register = () => {
                 type="text"
                 className="form-control"
                 id="contact"
+                placeholder="eg.9756846812"
                 value={contact}
                 onChange={(e) => {
                   setcontact(e.target.value);
@@ -169,6 +173,7 @@ const Register = () => {
               className="form-check-input mx-2"
               type="checkbox"
               value={tc}
+              required
               onChange={(e) => {
                 settc(e.target.value);
               }}
